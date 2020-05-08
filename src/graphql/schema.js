@@ -2,40 +2,29 @@ import { makeExecutableSchema } from "graphql-tools";
 import { resolvers } from "./resolvers.js";
 
 const typeDefs = `
-    type Query {
-        paths: [Path]
-        techs: [Technology]
-    }
+type Query {
+    suppliers: [Supplier]
+}
 
-    type Path {
-        _id: ID!
-        pathName: String!
-        coreTechnology: String!
-        urlPath: String
-        urlPathCertification: String
-        urlImage: String
-        cert: String
-        courses: [Course]
-    }
+type Supplier {
+    _id: ID!
+    name: String!
+    business_name: String!
 
-    type Course {
-        _id: ID!
-        courseName: String!
-        level: String!
-        urlImage: String
-        urlRepository: String
-        urlCourse: String
-        urlCertification: String
-        urlInstructor: String
-        platform: String
-    }
+}
 
-    type Technology {
-        _id: ID!
-        technologyName: String
-        paths: [Path]
-    }
 
+
+type Mutation { 
+    newSupplier(_id: ID, input: NewSupplier ): Supplier
+    updateSupplier(_id: ID, input: NewSupplier ): Supplier
+
+}
+
+input NewSupplier {
+    name: String!
+    business_name: String!
+}
 
 
 `;
